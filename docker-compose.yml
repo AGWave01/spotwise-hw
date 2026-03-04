@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  recorder-dsr:
+    build: .
+    environment:
+      STREAM_URL: "https://stream.dimensionesuonoroma.radio/audio/dsr.stream_aac64/playlist.m3u8"
+      STATION_NAME: "dsr"
+      CHUNK_DURATION: "600"
+      OUTPUT_DIR: "/recordings"
+      LOG_LEVEL: "INFO"
+    volumes:
+      - ./recordings/dsr:/recordings
+    restart: unless-stopped
+
+  recorder-ehrhiti:
+    build: .
+    environment:
+      STREAM_URL: "https://stream3.ehrhiti.lv:8000/Stream_93_LV01.aac"
+      STATION_NAME: "ehrhiti"
+      CHUNK_DURATION: "600"
+      OUTPUT_DIR: "/recordings"
+      LOG_LEVEL: "INFO"
+    volumes:
+      - ./recordings/ehrhiti:/recordings
+    restart: unless-stopped
